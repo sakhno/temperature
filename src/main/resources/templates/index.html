@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Temperature</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"/>
+    <script>
+        $( document ).ready(function() {
+            updateTemperature();
+            setInterval(updateTemperature, 5000);
+            function updateTemperature() {
+                $.get("ajax/temperature", function(data, status){
+                    $('#temp').html(data.toFixed(1).replace('.', ','));
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div style="position: fixed;top: 40%;left: 40%;"><span id="temp" style="font-size: 100px" /></div>
+</body>
+</html>
